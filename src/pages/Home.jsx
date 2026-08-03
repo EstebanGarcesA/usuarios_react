@@ -53,7 +53,7 @@ const Home = () => {
                                 <td className="px-6 py-4">{usuario.email}</td>
                                 <td className="px-6 py-4">
                                     <Link
-                                    to = {`/editar/${usuario.id}`}
+                                    to = {`/edit/${usuario.id}`}
                                     className = "rounded-md border border-blue-500 px-3 py-1 text-sm text-blue-400 transition hover:bg-blue-500 hover:text-white"
                                     >
                                         <i className=""></i>
@@ -62,20 +62,7 @@ const Home = () => {
                                 </td>
                             </tr>
                         ))}
-                        {/* <tr className="border-b border-gray-700 hover:bg-gray-700">
-                            <td className="px-6 py-4">1</td>
-                            <td className="px-6 py-4">El Principito</td>
-                            <td className="px-6 py-4">Antoine de Saint-Exupéry</td>
-                            <td className="space-x-2 px-6 py-4">
-                                <button className="rounded-md border border-blue-500 px-3 py-1 text-sm text-blue-400 transition hover:bg-blue-500 hover:text-white">
-                                    Editar
-                                </button>
 
-                                <button className="rounded-md border border-red-500 px-3 py-1 text-sm text-red-400 transition hover:bg-red-500 hover:text-white">
-                                    Eliminar
-                                </button>
-                            </td>
-                        </tr> */}
                     </tbody>
                 </table>
             </div>

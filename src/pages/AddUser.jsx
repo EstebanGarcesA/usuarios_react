@@ -1,6 +1,6 @@
 import NavegationBar from "../components/NavegationBar"
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {crearUsuario} from '../services/usuarios'
 
 

@@ -31,9 +31,44 @@ async function crearUsuario(usuario) {
    }
 }
 
+async function obtenerUsuarioPorId(id) {
+    try {
+        const respuesta = await api.get(`/${id}`)
+        return respuesta.data
+    } catch (error) {
+        console.error(`Error al obtener el usuario con id ${id}`, error);
+        throw new Error("No se pudo obtener el usuario solicitado");
+        
+        
+    }
+}
+
+async function actualizarUsuario(id, usuario) {
+    if (!usuario.nombre || usuario.nombre.trim() === "" ) {
+    throw new Error ("El nombre es obligatorio")
+   }
+   
+   if (!usuario.email || usuario.email.trim() === "" ) {
+    throw new Error ("El email es obligatorio")
+   }
+
+   try {
+    const respuesta = await api.put(`/${id}`, usuario)
+    return respuesta.data
+    
+   } catch (error) {
+    console.error(`Error al actualizar el usuario con id ${id}`, error);
+    throw Error ("No se pudo actualizar el usuario")
+    
+    
+   }
+}
+
 export {
     api,
     urlBase,
     listarUsuarios,
-    crearUsuario
+    crearUsuario,
+    obtenerUsuarioPorId,
+    actualizarUsuario
 };
