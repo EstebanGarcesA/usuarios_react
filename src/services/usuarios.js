@@ -64,11 +64,23 @@ async function actualizarUsuario(id, usuario) {
    }
 }
 
+async function eliminarUsuario(id) {
+    try {
+        const respuesta = await api.delete(`/${id}`)
+        return respuesta.data
+    } catch (error) {
+        console.error(`Error al eliminar al usuario con id ${id}`, error);
+        throw new Error("No se puede eliminar el usuario");
+        
+    }
+}
+
 export {
     api,
     urlBase,
     listarUsuarios,
     crearUsuario,
     obtenerUsuarioPorId,
-    actualizarUsuario
+    actualizarUsuario,
+    eliminarUsuario
 };

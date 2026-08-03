@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import NavegationBar from "../components/NavegationBar";
-import { listarUsuarios } from "../services/usuarios.js";
+import { eliminarUsuario, listarUsuarios } from "../services/usuarios.js";
 
 
 
@@ -21,6 +21,18 @@ const Home = () => {
     useEffect(() => {
         cargarDatos();
     }, []);
+
+    async function borrar(id) {
+        const confirmar = confirm("¿Estas seguro de eliminar este usuario?")
+        if (!confirmar) return 
+        try {
+            await eliminarUsuario(id);
+            alert("Usuario eliminado correctamente")
+            cargarDatos()
+        } catch (error) {
+            alert(error.message || "Error al eliminar el usuario")
+        }
+    }
     
     return (
         <div className="mx-auto w-full max-w-5xl px-4 py-8">
@@ -51,7 +63,7 @@ const Home = () => {
                                 <td className="px-6 py-4">{usuario.id}</td>
                                 <td className="px-6 py-4">{usuario.nombre}</td>
                                 <td className="px-6 py-4">{usuario.email}</td>
-                                <td className="px-6 py-4">
+                                <td className="px-6 py-4 flex justify-around">
                                     <Link
                                     to = {`/edit/${usuario.id}`}
                                     className = "rounded-md border border-blue-500 px-3 py-1 text-sm text-blue-400 transition hover:bg-blue-500 hover:text-white"
@@ -59,6 +71,12 @@ const Home = () => {
                                         <i className=""></i>
                                         Editar
                                     </Link>
+                                    <button
+                                        onClick={() => borrar(usuario.id)}
+                                        className="rounded-md border border-red-500 px-3 py-1 text-sm text-red-400 transition hover:bg-red-500 hover:text-white"
+                                        >
+                                        Eliminar
+                                    </button>
                                 </td>
                             </tr>
                         ))}
